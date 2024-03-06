@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE Demo</title>
+</head>
+
+<body>
+    <h1>Server-Sent Events Demo</h1>
+    <div id="event-data"></div>
+
+    <script>
+        const eventSource = new EventSource('/events');
+        const eventData = document.getElementById('event-data');
+
+        eventSource.addEventListener('message', function (event) {
+            const data = event.data;
+            const newData = document.createElement('div');
+            newData.textContent = data;
+            eventData.appendChild(newData);
+        });
+    </script>
+</body>
+
+</html>
