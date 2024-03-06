@@ -29,13 +29,13 @@ func main() {
 
 		for {
 			randNum := randGen.Intn(100)
-			event := fmt.Sprintf("data: Random number: %d\n\n", randNum)
+			event := fmt.Sprintf("data: Random number suka: %d\n\n", randNum)
 			_, err := c.Response().Write([]byte(event))
 			if err != nil {
 				return err
 			}
 			c.Response().Flush()
-			time.Sleep(3 * time.Second)
+			time.Sleep(1 * time.Second)
 		}
 	})
 

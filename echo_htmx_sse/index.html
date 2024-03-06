@@ -4,24 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSE Demo</title>
+    <title>SSE Demo with HTMX</title>
+    <!-- Include htmx and SSE extension -->
+    <script src="https://unpkg.com/htmx.org"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/sse.js"></script>
 </head>
 
 <body>
-    <h1>Server-Sent Events Demo</h1>
-    <div id="event-data"></div>
+    <h1>Server-Sent Events Demo with HTMX</h1>
+    <!-- Use hx-sse attribute to connect and listen to SSE -->
+    <div hx-ext="sse" sse-connect="/events" sse-swap="message">
+        Contents of this box will be updated in real time
+        with every SSE message received from the events.
+    </div>
 
-    <script>
-        const eventSource = new EventSource('/events');
-        const eventData = document.getElementById('event-data');
-
-        eventSource.addEventListener('message', function (event) {
-            const data = event.data;
-            const newData = document.createElement('div');
-            newData.textContent = data;
-            eventData.appendChild(newData);
-        });
-    </script>
+    <!-- htmx takes care of updating the DOM automatically, so no additional script is needed for that -->
 </body>
 
 </html>
